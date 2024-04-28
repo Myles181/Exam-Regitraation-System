@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Exam-NITW</title>
+	<title>Exam-FUTO</title>
 	{% load static %}
 	<link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'home/indexstyle.css' %}" >
@@ -11,15 +11,16 @@
 <body>
 	<header>
 
-		<img src="{% static 'home\images\nitwlogo1.png' %}" width="90%" height="70%" alt="Logo">
+		<!-- <img src="{% static 'home\images\nitwlogo1.png' %}" width="90%" height="70%" alt="Logo"> -->
 		<img class="image" src="{% static 'home\images\sample1.jpg' %}" alt="IG">
-		<img class="image" src="{% static 'home\images\Untitled-111111.jpg' %}" alt="NITW admin">
+		<img class="image" src="{% static 'home\images\Untitled-111111.jpg' %}" alt="FUTO admin">
 		<img class="image" src="{% static 'home\images\Untitled-215151.jpg' %}" alt="Library">
+		<p>FEDERAL UNIVERSITY OF TECHNOLOGY, OWERRI</p>
 	</header>
 		<main>
 
 			<section align="center">
-				<h2>Exam website-NITW</h2>
+				<h2>Exam website-FUTO</h2>
 				<form method="POST" enctype="multipart/form-data" action="{% url 'index' %}">
 					{% csrf_token %}
 					<fieldset>
