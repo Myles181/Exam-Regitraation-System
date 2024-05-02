@@ -3,7 +3,8 @@ from django.db import models
 # Create your models here.
 
 class Applicant(models.Model):
-    roll_no = models.CharField(max_length=15, primary_key=True)
+    id = models.BigAutoField(primary_key=True)
+    reg_no = models.CharField(max_length=15, unique=True)
     username = models.CharField(max_length=40)
     password = models.CharField(max_length=500)
     email = models.CharField(max_length=30)
@@ -12,15 +13,13 @@ class Applicant(models.Model):
 
 
 class Examiner(models.Model):
-    id = models.CharField(max_length=15, primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     password = models.CharField(max_length=500)
-    email = models.CharField(max_length=50)
+    email = models.CharField(max_length=50, unique=True)
     subject = models.CharField(max_length=50)
 
 
 class Admin(models.Model):
-    id = models.CharField(max_length=15, primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     password = models.CharField(max_length=500)
     email = models.CharField(max_length=50)
-
-

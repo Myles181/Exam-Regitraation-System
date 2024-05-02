@@ -18,8 +18,8 @@ from django.core.files.storage import FileSystemStorage
 @csrf_exempt
 def addq(request):
     if request.method == 'POST':
-        if request.POST.get('sub'):
-            form = addquestion(request.POST)
+        if request.POST.get('sub'): # When user submit
+            form = addquestion(request.POST) # validate with addquestion form to add a question
             if form.is_valid():
                 q = questions()
                 q.examid = request.POST.get('examid')
@@ -41,7 +41,6 @@ def addq(request):
             else:
                 return render(request, 'examhome.html', {'edit': 'yes', 'eerr': 'Enter all details correctly'})
         elif request.POST.get('edit'):
-            print("yea")
             eqid = request.POST.get('eqid')
             count = questions.objects.filter(qid=eqid).count()
             if count == 0:
@@ -52,7 +51,6 @@ def addq(request):
                               {'edt': 'yes', 'edit': 'yes', 'examid': qe.examid, 'qid': qe.qid, 'q': qe.q,
                                'opta': qe.opta, 'optb': qe.optb, 'optc': qe.optc, 'optd': qe.optd, 'answer': qe.answer})
         else:
-            print("yea")
             form = addquestion(request.POST)
             q = questions()
             q.examid = request.POST.get('examid')
@@ -73,7 +71,6 @@ def addq(request):
                                'qid': q.qid, 'q': q.q, 'opta': q.opta, 'optb': q.optb, 'optc': q.optc, 'optd': q.optd,
                                'answer': q.answer})
     else:
-        print("yea")
         template = loader.get_template('examhome.html')
         return HttpResponse(template.render())
 

@@ -31,18 +31,18 @@ def addexam(request):
     if len(CourseId) == 0 or len(ExamId) == 0 or len(Date) == 0:
         message = 'Please enter all the fields'
         print(message)
-    elif not Course.objects.filter(courseid=CourseId).exists():
+    elif not Course.objects.filter(coursecode=CourseId).exists():
         message = 'course id doesnot exist'
     # elif not Examiner.objects.filter(id=ExaminerId).exists():
     #     message = 'Examiner id doesnot exist'
     elif Exam.objects.filter(examid=ExamId).exists():
         message = 'ExamId already exists'
-    elif Exam.objects.filter(courseid=Course.objects.get(courseid=CourseId),examdate__gt=date.today()).exists():
+    elif Exam.objects.filter(coursecode=Course.objects.get(coursecode=CourseId),examdate__gt=date.today()).exists():
         message = 'Exam already created'
     else:
         message = 'You have Successfully created!'
-        obj= Course.objects.get(courseid=CourseId)
-        x = Exam(examid= ExamId, examname=ExamName, examdate=Date, courseid=obj, examinerid=obj.id.id)
+        obj= Course.objects.get(coursecode=CourseId)
+        x = Exam(examid= ExamId, examname=ExamName, examdate=Date, coursecode=obj, examinerid=obj.id.id)
         x.save()
 
     return render(request, 'eadmin/adm_add_exam.html', {'message': message})
@@ -59,14 +59,14 @@ def addcourse(request):
     message=''
     if len(CourseId) == 0 or len(CourseName) == 0 or len(ExaminerId) == 0:
         message = 'Please enter all the fields'
-    elif Course.objects.filter(courseid=CourseId).exists():
+    elif Course.objects.filter(coursecode=CourseId).exists():
         message = 'Course ID already exists'
     elif not Examiner.objects.filter(id=ExaminerId).exists():
         message = 'Examiner id doesnot exist'
     else:
         message = 'You have Successfully added a course!'
         obj = Examiner.objects.get(id=ExaminerId)
-        x=Course(courseid = CourseId, coursename = CourseName,id = obj)
+        x=Course(coursecode = CourseId, coursename = CourseName,id = obj)
         x.save()
     return render(request,  'eadmin/addcourse.html', {'message': message})
  else:
@@ -82,7 +82,7 @@ def adminprofile(request):
 
         if len(email) == 0:
             msg = 'Please enter all the fields'
-        elif Admin.objects.filter(email=email).exists() and email != obj.email:
+        elif Admin.objects.filter(reg_no=reg_no).exists() and email != obj.email:
             msg = 'Email Id already exists'
         else:
             msg = 'Your profile has been sucessfully updated'

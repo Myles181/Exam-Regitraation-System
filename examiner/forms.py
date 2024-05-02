@@ -12,3 +12,4 @@ class addquestion(forms.Form):
 class addexam(forms.Form):
 	examid = forms.CharField(max_length=5)
 	examdate = forms.DateField()
+

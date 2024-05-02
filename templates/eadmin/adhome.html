@@ -126,7 +126,7 @@ text-decoration:none; background-color:#0bbaea;color:white; border-radius:10px; 
 }
 
 .heading{
-  align:center;
+  text-align:center;
 
 }
 
@@ -134,111 +134,111 @@ text-decoration:none; background-color:#0bbaea;color:white; border-radius:10px; 
 </head>
 <body>
 
-<ul>
-  {%  load static %}
-  <li><a href="{% url 'adminhome' %}">Home</a></li>
-  <li><a href="{% url 'addexam' %}">Add Exam</a></li>
-  <li><a href="{% url 'addcourse' %}">Add Course</a></li>
-  <li class="dropdown" style="float:right;" >
-    <a href="javascript:void(0)" class="dropbtn" style="cursor:auto;">User</a>
-    <div class="dropdown-content">
-      <a href="{% url 'adminprofile' %}">My Profile</a>
-      <a href="{% url 'adminchangepassword' %}">Change Password</a>
-      <a href="{% url 'alogout' %}">LogOut</a>
+  <ul>
+    {%  load static %}
+    <li><a href="{% url 'adminhome' %}">Home</a></li>
+    <li><a href="{% url 'addexam' %}">Add Exam</a></li>
+    <li><a href="{% url 'addcourse' %}">Add Course</a></li>
+    <li class="dropdown" style="float:right;" >
+      <a href="javascript:void(0)" class="dropbtn" style="cursor:auto;">User</a>
+      <div class="dropdown-content">
+        <a href="{% url 'adminprofile' %}">My Profile</a>
+        <a href="{% url 'adminchangepassword' %}">Change Password</a>
+        <a href="{% url 'alogout' %}">LogOut</a>
+      </div>
+    </li>
+  </ul>
+
+  <h2 style="color:white; text-align:center;margin-top:80px;font-weight:700;text-decoration:none;background-color:green;height:40px;vertical-align:middle;font-size:30px;padding-top:5px;font:Courier;border-radius:30px;width:50%;
+      margin-left:auto;
+      margin-right:auto;">Pending Registrations</h2>
+
+
+  <bdy>
+  <div class="panel panel-primary">
+
+    <div class="panel-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>student Id</th>
+          <th>examid</th>
+          <th>status</th>
+          <th>paymentref</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {% for obj in objs %}
+
+        <tr>
+          <td>{{ obj.id.id }}</td>
+          <td>{{ obj.examid.examid }}</td>
+          <td ><a class="accept" href="{% url 'accept' p1=obj.examid.examid p2=obj.id.id %}">Accept</a>
+          <a class="reject" href="{% url 'reject' p1=obj.examid.examid p2=obj.id.id %}" >Reject</a></td>
+          <td><a href= {{obj.paymentref.url}}>View Receipt</a></td>
+
+        </tr>
+
+      {% endfor %}
+
+      </tbody>
+    </table>
     </div>
-  </li>
-</ul>
-
-<h2 style="color:white; text-align:center;margin-top:80px;font-weight:700;text-decoration:none;background-color:green;height:40px;vertical-align:middle;font-size:30px;padding-top:5px;font:Courier;border-radius:30px;width:50%;
-    margin-left:auto;
-    margin-right:auto;">Pending Registrations</h2>
-
-
-<bdy>
-<div class="panel panel-primary">
-
-  <div class="panel-body">
-	<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>student Id</th>
-        <th>examid</th>
-        <th>status</th>
-        <th>paymentref</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    {% for obj in objs %}
-
-      <tr>
-        <td>{{ obj.roll_no.roll_no }}</td>
-        <td>{{ obj.examid.examid }}</td>
-        <td ><a class="accept" href="{% url 'accept' p1=obj.examid.examid p2=obj.roll_no.roll_no %}">Accept</a>
-        <a class="reject" href="{% url 'reject' p1=obj.examid.examid p2=obj.roll_no.roll_no %}" >Reject</a></td>
-        <td><a href= {{obj.paymentref.url}}>View Receipt</a></td>
-
-      </tr>
-
-    {% endfor %}
-
-    </tbody>
-  </table>
   </div>
-</div>
-</bdy>
+  </bdy>
 
-<!--<table>-->
-  <!--<tr>-->
-    <!--<th>Student ID</th>-->
-    <!--<th>Student Name</th>-->
-    <!--<th>Exam ID</th>-->
-    <!--<th>Payment Receipt</th>-->
-    <!--<th>Verification Status</th>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>167245</td>-->
-    <!--<td>Griffin</td>-->
-    <!--<td>SE2</td>-->
+  <!--<table>-->
+    <!--<tr>-->
+      <!--<th>Student ID</th>-->
+      <!--<th>Student Name</th>-->
+      <!--<th>Exam ID</th>-->
+      <!--<th>Payment Receipt</th>-->
+      <!--<th>Verification Status</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<td>167245</td>-->
+      <!--<td>Griffin</td>-->
+      <!--<td>SE2</td>-->
 
-    <!--<td><a href="#">view receipt</a></td>-->
-    <!--<td ><a class="accept" href="#" >Accept</a>-->
-    <!--<a class="reject" href="#" >Reject</a></td>-->
+      <!--<td><a href="#">view receipt</a></td>-->
+      <!--<td ><a class="accept" href="#" >Accept</a>-->
+      <!--<a class="reject" href="#" >Reject</a></td>-->
+
+      <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<td>167240</td>-->
+      <!--<td>Griffin</td>-->
+      <!--<td>TOC3</td>-->
+      <!--<td><a href="#">view receipt</a></td>-->
+
+      <!--<td style="color:RED; font-weight:bold;">REJECTED</td>-->
 
     <!--</tr>-->
 
-  <!--<tr>-->
-    <!--<td>167240</td>-->
-    <!--<td>Griffin</td>-->
-    <!--<td>TOC3</td>-->
-    <!--<td><a href="#">view receipt</a></td>-->
-
-    <!--<td style="color:RED; font-weight:bold;">REJECTED</td>-->
-
-  <!--</tr>-->
-
-  <!--<tr>-->
-    <!--<td>167241</td>-->
-    <!--<td>Swanson</td>-->
-    <!--<td>OS1</td>-->
-    <!--<td><a href="#">view receipt</a></td>-->
+    <!--<tr>-->
+      <!--<td>167241</td>-->
+      <!--<td>Swanson</td>-->
+      <!--<td>OS1</td>-->
+      <!--<td><a href="#">view receipt</a></td>-->
 
 
 
-    <!--<td ><a class="accept" href="#" >Accept</a>-->
-    <!--<a class="reject" href="#" >Reject</a></td>-->
+      <!--<td ><a class="accept" href="#" >Accept</a>-->
+      <!--<a class="reject" href="#" >Reject</a></td>-->
 
-  <!--</tr>-->
+    <!--</tr>-->
 
-  <!--<tr>-->
-    <!--<td>167208</td>-->
-    <!--<td>Brown</td>-->
-    <!--<td>EEA4</td>-->
-    <!--<td><a href="#">view receipt</a></td>-->
-    <!--<td style="color:green; font-weight:bold;">ACCEPTED</td>-->
+    <!--<tr>-->
+      <!--<td>167208</td>-->
+      <!--<td>Brown</td>-->
+      <!--<td>EEA4</td>-->
+      <!--<td><a href="#">view receipt</a></td>-->
+      <!--<td style="color:green; font-weight:bold;">ACCEPTED</td>-->
 
-  <!--</tr>-->
-<!--</table>-->
+    <!--</tr>-->
+  <!--</table>-->
 
-</body>
+  </body>
 </html>
